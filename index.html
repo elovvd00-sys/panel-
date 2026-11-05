@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#333333">
+  <title>Панель управления</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <button class="text-button" data-action="log">Лог</button>
+      <button class="text-button" data-action="manager">Менеджер</button>
+      <button class="text-button" data-action="help">Справка</button>
+      <button class="text-button" data-action="reload">Перезагрузить контент</button>
+
+      <button class="transport-button" id="playButton" title="Старт / стоп">
+        <span>◀</span><span>▶</span>
+      </button>
+      <span class="toolbar-label">Остановить в</span>
+      <input id="stopAt" class="date-input" type="datetime-local">
+
+      <div class="quick-actions">
+        <button class="icon-button" data-action="start" title="Старт/стоп">▶</button>
+        <button class="icon-button" data-action="all-on" title="Включить всё">ϟ</button>
+        <button class="icon-button" data-action="key" title="Ключ">⚿</button>
+        <button class="icon-button" data-action="design" title="Дизайн">◆</button>
+        <button class="icon-button" data-action="tools" title="Инструменты">◈</button>
+      </div>
+
+      <div class="side-controls">
+        <label><input type="radio" name="mode" checked> Активный</label>
+        <label><input type="radio" name="mode"> Пассивный</label>
+        <input class="side-field" aria-label="Поле 1">
+        <input class="side-field" aria-label="Поле 2">
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Разделы">
+      <button class="tab active" data-tab="settings">Настройка</button>
+      <button class="tab" data-tab="feeder">Фидер</button>
+      <button class="tab" data-tab="autoresponder">Автоответчик</button>
+      <button class="tab" data-tab="dialogs">Беседы</button>
+      <button class="tab" data-tab="smart">Умный автоответчик</button>
+      <button class="tab" data-tab="voice">Голосовые сообщения</button>
+      <button class="tab" data-tab="inviter">Инвайтер</button>
+      <button class="tab" data-tab="remote">Удалённое управление</button>
+    </nav>
+
+    <main class="workspace">
+      <section class="settings-card tab-panel active" id="settings">
+        <h1>Настройки</h1>
+        <p class="hint">Параметры сохраняются в этом браузере.</p>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="interval" aria-label="Изменить интервал">◀ ▶</button>
+          <label for="interval">Интервал работы</label>
+          <input id="interval" type="number" min="0" value="333">
+          <span>мс</span>
+        </div>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="delay" aria-label="Изменить задержку">◀ ▶</button>
+          <label for="delay">Задержка</label>
+          <input id="delay" type="number" min="0" value="333">
+          <span>мс</span>
+        </div>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="retries" aria-label="Изменить повторы">◀ ▶</button>
+          <label for="retries">Количество повторов</label>
+          <input id="retries" type="number" min="0" value="3">
+          <span>раз</span>
+        </div>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="smartDelay" aria-label="Изменить интервал автоответчика">◀ ▶</button>
+          <label for="smartDelay">Умный автоответчик</label>
+          <input id="smartDelay" type="number" min="0" value="333">
+          <span>мс</span>
+        </div>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="inviterDelay" aria-label="Изменить интервал инвайтера">◀ ▶</button>
+          <label for="inviterDelay">Инвайтер</label>
+          <input id="inviterDelay" type="number" min="0" value="333">
+          <span>мс</span>
+        </div>
+
+        <div class="setting-row">
+          <button class="stepper" data-step="remoteDelay" aria-label="Изменить интервал управления">◀ ▶</button>
+          <label for="remoteDelay">Удалённое управление</label>
+          <input id="remoteDelay" type="number" min="0" value="333">
+          <span>мс</span>
+        </div>
+
+        <div class="card-actions">
+          <button id="saveButton">Сохранить настройки</button>
+          <button id="resetButton">Стереть все настройки в этом аккаунте</button>
+        </div>
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="settings-card tab-panel placeholder" id="feeder">
+        <h1>Фидер</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="autoresponder">
+        <h1>Автоответчик</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="dialogs">
+        <h1>Беседы</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="smart">
+        <h1>Умный автоответчик</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="voice">
+        <h1>Голосовые сообщения</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="inviter">
+        <h1>Инвайтер</h1><p>Раздел интерфейса.</p>
+      </section>
+      <section class="settings-card tab-panel placeholder" id="remote">
+        <h1>Удалённое управление</h1><p>Раздел интерфейса.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
